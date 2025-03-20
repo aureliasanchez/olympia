@@ -1938,29 +1938,38 @@ visibility: hidden;
         </div>
     </div>
 
-    <script>
-        function submitForm() {
-            // Obtener el formulario
-            let form = document.forms["contacto"];
-            let formData = new FormData(form);
-
-            // Enviar datos a Netlify
-            fetch("/", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData).toString()
-            })
-            .then(() => {
-                form.reset(); // Limpiar el formulario
-                document.getElementById("confirmationModal").style.display = "flex"; // Mostrar modal
-            })
-            .catch(error => alert("Hubo un error al enviar el formulario. Inténtalo de nuevo."));
-        }
-
-        function closeModal() {
-            document.getElementById("confirmationModal").style.display = "none";
-        }
-    </script>
+	<script>
+		function submitForm() {
+			let form = document.forms["contacto"];
+			let formData = new FormData(form);
+	
+			// Enviar datos a Netlify
+			fetch("/", {
+				method: "POST",
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: new URLSearchParams(formData).toString()
+			})
+			.then(() => {
+				form.reset(); // Limpiar el formulario
+				document.getElementById("confirmationModal").style.display = "flex"; // Mostrar modal
+	
+				// 🔹 Evento de conversión en Google Analytics 4 (GA4)
+				if (window.gtag) {
+					gtag("event", "generate_lead", {
+						event_category: "Formulario",
+						event_label: "Envío de Contacto",
+						value: 1
+					});
+				}
+			})
+			.catch(error => alert("Hubo un error al enviar el formulario. Inténtalo de nuevo."));
+		}
+	
+		function closeModal() {
+			document.getElementById("confirmationModal").style.display = "none";
+		}
+	</script>
+	
 									<!-- <p>Harness the power of RntrCheck’s RntrX platform. Our APIs offer a wide range of customizable tools designed to seamlessly integrate into your solutions and meet specific rental needs. Whether you’re enhancing application functionality or creating tailored solutions for property managers and landlords, RntrX delivers the technology and support you need.</p> -->								</div>
 				</div>
 		<div class="elementor-element elementor-element-143ee56 e-flex e-con-boxed e-con e-child" data-id="143ee56" data-element_type="container">
