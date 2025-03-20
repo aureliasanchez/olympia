@@ -4,6 +4,8 @@
 <!-- Mirrored from rntrcheck.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 19 Mar 2025 05:13:45 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
+	<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-N43P74736T"></script>
 <script>
@@ -94,6 +96,49 @@
 			<style>.cmplz-hidden {
 					display: none !important;
 				}</style><meta name="generator" content="Elementor 3.28.0; features: e_font_icon_svg, additional_custom_breakpoints, e_local_google_fonts; settings: css_print_method-external, google_font-enabled, font_display-swap">
+			    <style>
+					/* Estilos del modal */
+					.modal {
+						display: none;
+						position: fixed;
+						z-index: 1000;
+						left: 0;
+						top: 0;
+						width: 100%;
+						height: 100%;
+						background-color: rgba(0, 0, 0, 0.5);
+						justify-content: center;
+						align-items: center;
+					}
+			
+					.modal-content {
+						background: white;
+						padding: 20px;
+						border-radius: 10px;
+						text-align: center;
+						width: 300px;
+						box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+					}
+			
+					.modal-content i {
+						color: green;
+						font-size: 50px;
+					}
+			
+					.close-btn {
+						margin-top: 15px;
+						background-color: #4CAF50;
+						color: white;
+						border: none;
+						padding: 10px 15px;
+						cursor: pointer;
+						border-radius: 5px;
+					}
+			
+					.close-btn:hover {
+						background-color: #45a049;
+					}
+				</style>
 			<style>
 				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
 				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
@@ -1860,7 +1905,7 @@ visibility: hidden;
 				</div>
 				<div class="elementor-element elementor-element-64ede00 elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="64ede00" data-element_type="widget" data-widget_type="text-editor.default">
 				<div class="elementor-widget-container">
-					<form action="">
+					<form name="contacto" method="POST" data-netlify="true" onsubmit="event.preventDefault(); submitForm()">
 						<div>
 							<label for="name">Nombre:</label>
 							<input type="text" id="name" name="name"><br><br>
@@ -1883,6 +1928,39 @@ visibility: hidden;
 						</div>
 						<input type="submit" value="Enviar">
 					</form>
+					    <!-- Modal de Confirmación -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <i class="fas fa-check-circle"></i>
+            <h2>¡Correo enviado!</h2>
+            <p>Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.</p>
+            <button class="close-btn" onclick="closeModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Obtener el formulario
+            let form = document.forms["contacto"];
+            let formData = new FormData(form);
+
+            // Enviar datos a Netlify
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
+                form.reset(); // Limpiar el formulario
+                document.getElementById("confirmationModal").style.display = "flex"; // Mostrar modal
+            })
+            .catch(error => alert("Hubo un error al enviar el formulario. Inténtalo de nuevo."));
+        }
+
+        function closeModal() {
+            document.getElementById("confirmationModal").style.display = "none";
+        }
+    </script>
 									<!-- <p>Harness the power of RntrCheck’s RntrX platform. Our APIs offer a wide range of customizable tools designed to seamlessly integrate into your solutions and meet specific rental needs. Whether you’re enhancing application functionality or creating tailored solutions for property managers and landlords, RntrX delivers the technology and support you need.</p> -->								</div>
 				</div>
 		<div class="elementor-element elementor-element-143ee56 e-flex e-con-boxed e-con e-child" data-id="143ee56" data-element_type="container">
