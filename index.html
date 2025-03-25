@@ -174,13 +174,52 @@ visibility: hidden;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     display: none;
 }		</style>
-
-<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<style>
+	/* Posicionamiento general */
+	.weglot-container {
+	  position: fixed !important;
+	  top: 20px !important;
+	  right: 20px !important;
+	  z-index: 9999;
+	}
+  
+	/* Oculta el fondo original si tiene */
+	.weglot-container.wg-default {
+	  background: none !important;
+	  box-shadow: none !important;
+	  padding: 0 !important;
+	}
+  
+	/* Banderas (img) estilo elegante */
+	.weglot-container img {
+	  width: 28px;
+	  height: auto;
+	  border-radius: 4px;
+	  margin-left: 8px;
+	  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	  transition: transform 0.2s ease;
+	}
+  
+	.weglot-container img:hover {
+	  transform: scale(1.1);
+	}
+  </style>
+  
+	
+	
+<!-- 2. Script de Weglot -->
+<script src="https://cdn.weglot.com/weglot.min.js"></script>
 <script>
-    Weglot.initialize({
-        api_key: 'wg_5f36dad66f946a418aed9ee1e0ad11256'
-    });
+  Weglot.initialize({
+    api_key: 'wg_5f36dad66f946a418aed9ee1e0ad11256',
+    switchers: [
+      {
+        style: "flags"
+      }
+    ]
+  });
 </script>
+  
 		</head>
 <body class="home page-template-default page page-id-17 wp-custom-logo wp-embed-responsive theme-default elementor-default elementor-kit-6 elementor-page elementor-page-17">
 
